@@ -223,7 +223,6 @@ body {
   color: var(--on-primary);
   text-shadow: 1px 1px 3px var(--neutral-100);
   text-align: center;
-  box-shadow: 0 1px 24px 1px var(--neutral-50);
 }
 
 .score {
@@ -253,8 +252,9 @@ body {
   margin: auto;
   border: 4px solid var(--tertiary);
   padding: 0.8rem;
-  background-color: var(--neutral-100);
+  background-color: var(--neutral-50);
   border-radius: 2rem;
+  font-size: 2vw;
 }
 
 #host {
@@ -264,117 +264,76 @@ body {
   justify-content: center;
 }
 
-.questionHolder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 10px;
-  margin: auto;
-  min-height: 90px;
-  text-align: center;
-  font-size: 35px;
-  color: var(--primary-dark);
-  text-shadow: initial;
-  text-align: center;
-  border: 1px solid var(--neutral-100);
-  background: var(--primary-light);
-  border: 1px solid var(--neutral-100);
-  -webkit-box-shadow: inset 0 1px 24px 1px var(--neutral-50);
-  -moz-box-shadow: inset 0 1px 24px 1px var(--neutral-50);
-  box-shadow: inset 0 1px 24px 1px var(--neutral-50);
-}
-
-.questionHolder span {
+.guess {
+  color: white;
+  word-spacing: 1rem;
+  font-size: 3vw;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: black;
   display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
 }
 
-.colHolder {
-  background: var(--neutral-100);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto auto;
-  gap: 5px;
-  padding: 5px;
-  grid-auto-flow: column;
+.guess span {
+  padding: 0 20px;
+  padding-bottom: 2px;
+  border-bottom: 5px solid red;
+  transition: color 0.5s ease;
+  line-height: 5vw;
+
 }
 
-.cardHolder {
-  position: relative;
-  vertical-align: top;
-  height: 70px;
-  background: var(--neutral-100);
-  border: 4px solid var(--on-primary);
-  display: flex;
-  -webkit-box-shadow: 0 1px 24px 1px var(--neutral-50);
-  -moz-box-shadow: 0 1px 24px 1px var(--neutral-50);
-  box-shadow: 0 1px 24px 1px var(--neutral-50);
+.guess-hidden {
+  color: transparent;
 }
 
-.cardHolder.showHost:not(.empty) {
-  cursor: pointer;
+
+.card {
+  transform-style: preserve-3d;
+  transition: transform 1s;
 }
 
-.cardHolder .lightBG {
+.card div {
+  backface-visibility: hidden;
+}
+
+.card div.front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-weight: 700;
+    font-size: 5vw;
+    top: 0;
+    left: 0;
+    text-transform: uppercase;
+    text-shadow: 1.5px 1.5px 0 #333, 0px 1.5px 0 #333, -1.5px -1.5px 0 #333, -1.5px -1.5px 0 #333, -1.5px 1.5px 0 #333, 1.5px -1.5px 0 #333, 0.7778174593px 0.7778174593px 0 #444, 1.5556349186px 1.5556349186px 0 #444, 2.3334523779px 2.3334523779px 0 #444, 3.1112698372px 3.1112698372px 0 #444, 3.8890872965px 3.8890872965px 0 #444, 4.6669047558px 4.6669047558px 0 #444, 5.4447222151px 5.4447222151px 0 #444, 6.2225396744px 6.2225396744px 0 #444, 7.0003571337px 7.0003571337px 0 #444, 7.7781745931px 7.7781745931px 0 #444;
+
+}
+.card div.back {
+  transform: rotateY( 180deg );
+  margin: 2vh 0.4vh;
+
+}
+
+.card.flipped {
+  transform: rotateY( 180deg );
+}
+
+
+.title-header {
+  color:#ffff65;
+  text-shadow: 1px 1px 3px var(--neutral-100);
   font-weight: bold;
-  width: 50px;
-  text-align: center;
-  border-left: 2px solid var(--primary-dark);
-  align-self: flex-end;
 }
 
-
-.cardHolder>div {
-  top: -2px;
-  left: -2px;
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  width: 100%;
-  line-height: 100%;
-  height: 100%;
-  border: 2px solid var(--primary-dark);
-  line-height: 50px;
+.start {
+  font-size: 4vw;
+  padding: 2rem;
 }
 
-.cardHolder .back {
-  font-size: 30px;
-  text-align: left;
-  height: 70px;
-  line-height: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.cardHolder .back span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.cardHolder .front {
-  text-align: center;
-}
-
-.cardHolder .front span {
-  font-size: 40px;
-  position: absolute;
-  border-radius: 50%;
-  line-height: 45px;
-  height: 45px;
-  width: 45px;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: block;
-  margin: auto;
-  border: 2px solid var(--primary-dark);
-}
 
 .btnHolder {
   margin: auto;
@@ -404,39 +363,7 @@ body {
   border-radius: 0 50px 50px 0;
 }
 
-.gameBoard:not(.showHost) .btnHolder .button:not(#hostBTN),
-.cardHolder:not(.showHost) .answer {
-  display: none !important;
-}
 
-.cardHolder.showHost .front span,
-.cardHolder .back {
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  text-transform: capitalize;
-}
-
-.darkBG {
-  justify-content: center;
-}
-
-.cardHolder.showHost .front span:nth-child(1) {
-  margin: auto 5px;
-  justify-content: center;
-}
-
-.cardHolder.showHost .front span:nth-child(2) {
-  width: 100%;
-  border: none;
-  margin: auto 5px;
-  box-sizing: border-box;
-  padding-left: 60px;
-  text-align: left;
-  text-shadow: 1px 1px 3px var(--neutral-100), -1px -1px 3px var(--neutral-100), 0 0 5px var(--neutral-100);
-}
 
 .wrongX:not(.button) {
   grid-area: host;

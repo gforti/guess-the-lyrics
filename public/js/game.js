@@ -11,9 +11,28 @@ MainBoardTemplate.innerHTML = `
 
   <!--- Main Board --->
   <div id="middleBoard">
-    <div class="song"></div>
-    <div class="start"></div>
-    <div class="lyric"></div>
+    <div class="card">
+      <div class="front">
+        Next Question
+      </div>
+      <div class="back">
+
+        <div class="title-header">
+          Song Title
+        </div>
+        <div class="song guess guess-hidden"></div>
+
+        <div class="title-header">
+          Artist
+        </div>
+        <div class="artist guess guess-hidden"></div>
+
+        <div class="start"></div>
+        <div class="lyric guess guess-hidden"></div>
+
+      </div>
+    </div>
+
   </div>
 
   <!--- Wrong --->
@@ -62,6 +81,7 @@ class GameBoard extends HTMLElement {
   constructor() {
     super('')
     this.appendChild(MainBoardTemplate.content.cloneNode(true))
+    this.cardTimer
   }
 
   connectedCallback() {
@@ -71,9 +91,13 @@ class GameBoard extends HTMLElement {
     this.$team1 = this.$board.querySelector('#team1')
     this.$team2 = this.$board.querySelector('#team2')
     this.$wrongBoardImages = [...this.$wrongBoard.querySelectorAll('img')]
-    /*this.$question = this.$board.querySelector('.question')
+    this.$card = this.$board.querySelector('.card')
+    this.$song = this.$board.querySelector('.song')
+    this.$artist = this.$board.querySelector('.artist')
+    this.$start = this.$board.querySelector('.start')
+    this.$lyric = this.$board.querySelector('.lyric')
 
-   */
+
   }
 
   awardTeam1(points) {
@@ -104,7 +128,23 @@ class GameBoard extends HTMLElement {
   }
 
   makeQuestion(questionData) {
-    questionData.hint.play()
+    this.$card.classList.remove('flipped')
+
+    this.$song.classList.toggle('guess-hidden', true)
+    this.$artist.classList.toggle('guess-hidden', true)
+    this.$lyric.classList.toggle('guess-hidden', true)
+
+    this.$song.innerHTML = questionData.song
+    this.$artist.innerHTML = questionData.artist
+    this.$start.innerHTML = questionData.start
+    this.$lyric.innerHTML = questionData.lyrics
+
+    clearTimeout(this.cardTimer)
+
+    this.cardTimer = setTimeout(() => {
+      this.$card.classList.add('flipped')
+    }, 2000)
+
     /* this.$question.innerHTML = questionText //.textContent
      this.resetFlippedCards()
      const maxCards = this.$answerCards.length
@@ -117,6 +157,17 @@ class GameBoard extends HTMLElement {
      }*/
   }
 
+  toggleSong() {
+    this.$song.classList.toggle('guess-hidden')
+  }
+
+  toggleArtist() {
+    this.$artist.classList.toggle('guess-hidden')
+  }
+
+  toggleLyric() {
+    this.$lyric.classList.toggle('guess-hidden')
+  }
 
   #dispatchDetails(trigger) {
     const btnClicked = new CustomEvent('command', {
@@ -219,8 +270,8 @@ class GameManager {
     again: new Audio(`../public/fx/again.mp3`),
     flipCard: new Audio(`../public/fx/flip.mp3`),
     intro: new Audio(`../public/fx/intro.mp3`),
-    newSurvey: new Audio(`../public/fx/new.mp3`),
-    points: new Audio(`../public/fx/points.mp3`),
+    newQuestion: new Audio(`../public/fx/points.mp3`),
+    points: new Audio(`../public/fx/flip.mp3`),
     strike: new Audio(`../public/fx/strike.mp3`),
   }
 
@@ -299,7 +350,7 @@ class GameManager {
   }
 
   makeQuestion() {
-    this.Sounds.newSurvey.play()
+    this.Sounds.newQuestion.play()
     this.generatedQuestions.forEach(({hint, fullSong}) => {
       hint.pause()
       hint.currentTime = 0
@@ -324,10 +375,10 @@ class GameManager {
       })
 
       const questionData = {
-        song,
-        artist,
-        start,
-        lyrics,
+        song: `<span>${song.split(' ').join('</span> <span>')}</span>`,
+        artist: `<span>${artist.split(' ').join('</span> <span>')}</span>`,
+        start: start + '...',
+        lyrics: `<span>${lyrics.split(' ').join('</span> <span>')}</span>`,
         hint,
         fullSong
       }
@@ -392,7 +443,31 @@ class GameManager {
         this.changeQuestion()
         break;
       case "playHint":
-        // this.Sounds.again.play()
+        this.generatedQuestions[this.questionMarker].fullSong.pause()
+        if (this.generatedQuestions[this.questionMarker].hint.paused) {
+          this.generatedQuestions[this.questionMarker].hint.currentTime = 0
+          this.generatedQuestions[this.questionMarker].hint.play()
+        } else {
+          this.generatedQuestions[this.questionMarker].hint.pause()
+        }
+        break;
+      case "playClip":
+        this.generatedQuestions[this.questionMarker].hint.pause()
+        if (this.generatedQuestions[this.questionMarker].fullSong.paused) {
+          this.generatedQuestions[this.questionMarker].fullSong.currentTime = 0
+          this.generatedQuestions[this.questionMarker].fullSong.play()
+        } else {
+          this.generatedQuestions[this.questionMarker].fullSong.pause()
+        }
+        break;
+      case "showSong":
+        this.#$gameBoard.toggleSong()
+        break;
+      case "showArtist":
+        this.#$gameBoard.toggleArtist()
+        break;
+      case "showLyrics":
+        this.#$gameBoard.toggleLyric()
         break;
     }
   }
