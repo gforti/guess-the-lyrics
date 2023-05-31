@@ -37,6 +37,7 @@ body {
   display: none !important;
 }
 
+/* INTRO DISPLAY */
 .intro {
   position: absolute;
   left: 0;
@@ -150,6 +151,11 @@ body {
   margin: 1em;
 }
 
+
+
+
+/* GameBoard */
+
 .cardHolder {
   display: flex;
   perspective: 800px;
@@ -207,7 +213,6 @@ body {
   margin: auto;
   display: grid;
   grid-template-areas:
-    ".        scoreM  .       "
     "scoreT1  main    scoreT2 "
     ".        host    .       ";
   justify-self: center;
@@ -217,14 +222,7 @@ body {
   font-family: helvetica, sans-serif;
   color: var(--on-primary);
   text-shadow: 1px 1px 3px var(--neutral-100);
-  border: 15px solid var(--tertiary);
   text-align: center;
-  border-radius: 50%;
-  background: url('../images/background.svg') transparent;
-  background-repeat: repeat;
-  background-position: center center;
-  -webkit-box-shadow: 0 1px 24px 1px var(--neutral-50);
-  -moz-box-shadow: 0 1px 24px 1px var(--neutral-50);
   box-shadow: 0 1px 24px 1px var(--neutral-50);
 }
 
@@ -240,11 +238,6 @@ body {
   box-shadow: inset 0 1px 24px 1px var(--neutral-50);
 }
 
-#boardScore {
-  grid-area: scoreM;
-  font-size: 70px;
-  width: 150px;
-}
 
 #team1 {
   grid-area: scoreT1;
@@ -473,6 +466,7 @@ body {
 
 
 
+/* INTRO DISPLAY */
 /* record and CD */
 .disc {
   display: inline-block;

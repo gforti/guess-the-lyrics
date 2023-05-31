@@ -1,8 +1,18 @@
 [
   {
-    "start": "Tell me why...",
+    "song": "I Want It That Way",
+    "artist" : "Backstreet Boys",
+    "start": "Tell me why",
     "lyrics": "Ain’t nothing but a heartache (Tell me why), ain’t nothing but a mistake",
-    "music": "songs/tellme.mp3",
-    "stopAt": 5
+    "music": "public/songs/tellme.mp3",
+    "stopAt": 1.2
+  },
+  {
+    "song": "All Star",
+    "artist" : "Smash Mouth",
+    "start": "Hey now",
+    "lyrics": "You’re an all-star, get your game on, go play",
+    "music": "public/songs/heynow.mp3",
+    "stopAt": 39
   }
 ]
