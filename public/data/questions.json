@@ -83,10 +83,28 @@
   {
     "song": "Ninja Rap",
     "artist" : "Vanilla Ice",
-    "start": "Ninja, Nina Rap(3x); Go, Go, Go, Go,",
+    "start": "Ninja, Nina Rap(3x); Go, Go, Go, Go",
     "lyrics": "Go Ninja, Go Ninja, Go",
     "music": "public/songs/Vanilla Ice - Ninja Rap Lyrics.mp3",
     "startAt": 35,
     "stopAt": 48
+  },
+  {
+    "song": "I Can Only Imagine",
+    "artist" : "MercyMe",
+    "start": "I can only imagine when that day comes",
+    "lyrics": "And I find myself standing in the Son I can only imagine",
+    "music": "public/songs/MercyMe - I Can Only Imagine (Video).mp3",
+    "startAt": 85,
+    "stopAt": 90
+  },
+  {
+    "song": "Stomp",
+    "artist" : "Kirk Franklin",
+    "start": "Makes me clap my hands, makes me wanna dance and",
+    "lyrics": "STOMP, My brother, can't you see? I got the victory",
+    "music": "public/songs/Stomp - Kirk Franklin.mp3",
+    "startAt": 66,
+    "stopAt": 71
   }
 ]

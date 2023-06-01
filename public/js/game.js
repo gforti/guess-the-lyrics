@@ -97,6 +97,7 @@ class GameBoard extends HTMLElement {
     this.$team2 = this.$board.querySelector('#team2')
     this.$wrongBoardImages = [...this.$wrongBoard.querySelectorAll('img')]
     this.$card = this.$board.querySelector('.card')
+    this.$cardBack = this.$board.querySelector('.back')
     this.$song = this.$board.querySelector('.song')
     this.$artist = this.$board.querySelector('.artist')
     this.$start = this.$board.querySelector('.start')
@@ -150,16 +151,12 @@ class GameBoard extends HTMLElement {
       this.$card.classList.add('flipped')
     }, 2000)
 
-    /* this.$question.innerHTML = questionText //.textContent
-     this.resetFlippedCards()
-     const maxCards = this.$answerCards.length
-     for (let i = 0; i < maxCards; i++) {
-       if (questionAnswers[i]) {
-         this.$answerCards[i].setCardAnswer(questionAnswers[i])
-       } else {
-         this.$answerCards[i].isEmpty()
-       }
-     }*/
+  }
+
+  showAllAnswers() {
+    this.$song.classList.toggle('guess-hidden', false)
+    this.$artist.classList.toggle('guess-hidden', false)
+    this.$lyric.classList.toggle('guess-hidden', false)
   }
 
   toggleSong() {
@@ -337,18 +334,24 @@ class GameManager {
 
   awardPoints(team) {
     this.points[`team${team}`]++
-    this.Sounds.points.play()
+    if(!this.isHost()) {
+      this.Sounds.points.play()
+    }
     this.#$gameBoard[`awardTeam${team}`](this.points[`team${team}`])
   }
 
   punishPoints(team) {
     this.points[`team${team}`]--
-    this.Sounds.again.play()
+    if(!this.isHost()) {
+      this.Sounds.again.play()
+    }
     this.#$gameBoard[`awardTeam${team}`](this.points[`team${team}`])
   }
 
   wrongAnswer(amt) {
-    this.Sounds.strike.play()
+    if(!this.isHost()) {
+      this.Sounds.strike.play()
+    }
     this.#$gameBoard.displayWrongs(amt)
   }
 
@@ -363,7 +366,9 @@ class GameManager {
   }
 
   makeQuestion() {
-    this.Sounds.newQuestion.play()
+    if(!this.isHost()) {
+      this.Sounds.newQuestion.play()
+    }
     this.generatedQuestions.forEach(({hint, fullSong}) => {
       hint.pause()
       hint.currentTime = 0
@@ -372,6 +377,10 @@ class GameManager {
     })
     const questionData = this.generatedQuestions[this.questionMarker]
     this.#$gameBoard.makeQuestion(questionData)
+
+    if(this.isHost()) {
+      this.#$gameBoard.showAllAnswers()
+    }
   }
 
   generateQuestions() {
@@ -411,11 +420,13 @@ class GameManager {
 
 
   toggleIntroMusic() {
-    if (this.Sounds.intro.paused) {
-      this.Sounds.intro.play()
-      this.Sounds.intro.currentTime = 0
-    } else {
-      this.Sounds.intro.pause()
+    if(!this.isHost()) {
+      if (this.Sounds.intro.paused) {
+        this.Sounds.intro.play()
+        this.Sounds.intro.currentTime = 0
+      } else {
+        this.Sounds.intro.pause()
+      }
     }
   }
 
@@ -471,31 +482,41 @@ class GameManager {
         this.changeQuestion()
         break;
       case "playHint":
-        this.generatedQuestions[this.questionMarker].fullSong.pause()
-        if (this.generatedQuestions[this.questionMarker].hint.paused) {
-          this.generatedQuestions[this.questionMarker].hint.currentTime = 0
-          this.generatedQuestions[this.questionMarker].hint.play()
-        } else {
-          this.generatedQuestions[this.questionMarker].hint.pause()
+        if(!this.isHost()) {
+          this.generatedQuestions[this.questionMarker].fullSong.pause()
+          if (this.generatedQuestions[this.questionMarker].hint.paused) {
+            this.generatedQuestions[this.questionMarker].hint.currentTime = 0
+            this.generatedQuestions[this.questionMarker].hint.play()
+          } else {
+            this.generatedQuestions[this.questionMarker].hint.pause()
+          }
         }
         break;
       case "playClip":
-        this.generatedQuestions[this.questionMarker].hint.pause()
-        if (this.generatedQuestions[this.questionMarker].fullSong.paused) {
-          this.generatedQuestions[this.questionMarker].fullSong.currentTime = 0
-          this.generatedQuestions[this.questionMarker].fullSong.play()
-        } else {
-          this.generatedQuestions[this.questionMarker].fullSong.pause()
+        if(!this.isHost()) {
+          this.generatedQuestions[this.questionMarker].hint.pause()
+          if (this.generatedQuestions[this.questionMarker].fullSong.paused) {
+            this.generatedQuestions[this.questionMarker].fullSong.currentTime = 0
+            this.generatedQuestions[this.questionMarker].fullSong.play()
+          } else {
+            this.generatedQuestions[this.questionMarker].fullSong.pause()
+          }
         }
         break;
       case "showSong":
-        this.#$gameBoard.toggleSong()
+        if(!this.isHost()) {
+          this.#$gameBoard.toggleSong()
+        }
         break;
       case "showArtist":
-        this.#$gameBoard.toggleArtist()
+        if(!this.isHost()) {
+          this.#$gameBoard.toggleArtist()
+        }
         break;
       case "showLyrics":
-        this.#$gameBoard.toggleLyric()
+        if(!this.isHost()) {
+          this.#$gameBoard.toggleLyric()
+        }
         break;
     }
   }
