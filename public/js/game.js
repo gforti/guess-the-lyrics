@@ -41,6 +41,9 @@ MainBoardTemplate.innerHTML = `
   </div>
 
   <admin-board id="host"></admin-board>
+
+  <div class="record black disc float-left"></div>
+  <div class="record gold disc float-right"></div>
 </div>`.trim()
 
 const AdminBoardTemplate = document.createElement('template')
@@ -49,15 +52,17 @@ AdminBoardTemplate.innerHTML = `
 <div class="btnHolder" id="host">
   <div id="hostBTN" class="button">Be the host</div>
   <div id="awardTeam1" class="button" data-team="1">Award Team 1</div>
+  <div id="punishTeam1" class="button" data-team="1">Punish Team 1</div>
   <div id="newQuestion" class="button">New Question</div>
   <div id="playHint" class="button">Play Hint 🔈</div>
   <div id="wrong1" class="button wrongX">
     <img alt="not on board" src="/public/images/wrong.svg" />
   </div>
   <div id="playClip" class="button">Play Song 🔈</div>
-  <div id="showLyrics" class="button">Show Lyrics</div>
   <div id="showSong" class="button">Show Song</div>
   <div id="showArtist" class="button">Show Artist</div>
+  <div id="showLyrics" class="button">Show Lyrics</div>
+  <div id="punishTeam2" class="button" data-team="2">Punish Team 2</div>
   <div id="awardTeam2" class="button" data-team="2">Award Team 2</div>
 </div>`.trim()
 
@@ -189,7 +194,9 @@ class AdminBoard extends HTMLElement {
     this.$adminBoard = this.querySelector('#host')
     this.$makeHost = this.$adminBoard.querySelector('#hostBTN')
     this.$awardTeam1 = this.$adminBoard.querySelector('#awardTeam1')
+    this.$punishTeam1 = this.$adminBoard.querySelector('#punishTeam1')
     this.$awardTeam2 = this.$adminBoard.querySelector('#awardTeam2')
+    this.$punishTeam2 = this.$adminBoard.querySelector('#punishTeam2')
     this.$newQuestion = this.$adminBoard.querySelector('#newQuestion')
 
     this.$playHint = this.$adminBoard.querySelector('#playHint')
@@ -202,7 +209,9 @@ class AdminBoard extends HTMLElement {
 
     this.$makeHost.addEventListener('click', this.#dispatchDetails.bind(this, 'makeHost'))
     this.$awardTeam1.addEventListener('click', this.#dispatchDetails.bind(this, 'awardTeam1'))
+    this.$punishTeam1.addEventListener('click', this.#dispatchDetails.bind(this, 'punishTeam1'))
     this.$awardTeam2.addEventListener('click', this.#dispatchDetails.bind(this, 'awardTeam2'))
+    this.$punishTeam2.addEventListener('click', this.#dispatchDetails.bind(this, 'punishTeam2'))
     this.$playHint.addEventListener('click', this.#dispatchDetails.bind(this, 'playHint'))
     this.$wrong1.addEventListener('click', this.#dispatchDetails.bind(this, 'wrong1'))
 
@@ -327,11 +336,15 @@ class GameManager {
   }
 
   awardPoints(team) {
-
     this.points[`team${team}`]++
     this.Sounds.points.play()
     this.#$gameBoard[`awardTeam${team}`](this.points[`team${team}`])
+  }
 
+  punishPoints(team) {
+    this.points[`team${team}`]--
+    this.Sounds.again.play()
+    this.#$gameBoard[`awardTeam${team}`](this.points[`team${team}`])
   }
 
   wrongAnswer(amt) {
@@ -363,14 +376,23 @@ class GameManager {
 
   generateQuestions() {
     this.generatedQuestions = []
-    this.questions.forEach( ({ song, artist, start, lyrics, music, stopAt }) => {
+    this.questions.forEach( ({ song, artist, start, lyrics, music, startAt = 0, stopAt }) => {
       const hint = new Audio(music)
       const fullSong = new Audio(music)
 
-      hint.addEventListener("timeupdate", () => {
+      hint.addEventListener('timeupdate', () => {
+        if (hint.currentTime <= startAt) {
+          hint.currentTime = startAt
+        }
         if (hint.currentTime >= stopAt) {
           hint.pause()
-          hint.currentTime = 0
+          hint.currentTime = startAt
+        }
+      })
+
+      fullSong.addEventListener('timeupdate', () => {
+        if (fullSong.currentTime <= stopAt) {
+          fullSong.currentTime = stopAt
         }
       })
 
@@ -422,8 +444,14 @@ class GameManager {
       case "awardTeam1":
         this.awardPoints(1);
         break;
+      case "punishTeam1":
+        this.punishPoints(1);
+        break;
       case "awardTeam2":
         this.awardPoints(2);
+        break;
+      case "punishTeam2":
+        this.punishPoints(2);
         break;
       case "hostAssigned":
         this.removeHostControls()

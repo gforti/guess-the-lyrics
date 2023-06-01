@@ -5,6 +5,7 @@
     "start": "Tell me why",
     "lyrics": "Ain’t nothing but a heartache (Tell me why), ain’t nothing but a mistake",
     "music": "public/songs/tellme.mp3",
+    "startAt": 0,
     "stopAt": 1.2
   },
   {
@@ -13,6 +14,79 @@
     "start": "Hey now",
     "lyrics": "You’re an all-star, get your game on, go play",
     "music": "public/songs/heynow.mp3",
-    "stopAt": 39
+    "startAt": 34,
+    "stopAt": 38.5
+  },
+  {
+    "song": "I Will Always Love You",
+    "artist" : "Whitney Houston",
+    "start": "And I",
+    "lyrics": "Will always love you",
+    "music": "public/songs/i-will-always-love-you-low.mp3",
+    "startAt": 0,
+    "stopAt": 5
+  },
+  {
+    "song": "Wannabe",
+    "artist" : "Spice Girls",
+    "start": "If you wanna be my lover",
+    "lyrics": "You gotta get with my friends; Make it last forever, friendship never ends",
+    "music": "public/songs/Spice Girls - Wannabe (Lyrics).mp3",
+    "startAt": 44.5,
+    "stopAt": 46
+  },
+  {
+    "song": "Remember the Time",
+    "artist" : "Michael Jackson",
+    "start": "Do you remember the time",
+    "lyrics": "When we fell in love, do you remember the time when we first met girl",
+    "music": "public/songs/Remember the Time.mp3",
+    "startAt": 54,
+    "stopAt": 57
+  },
+  {
+    "song": "Time of your life",
+    "artist" : "Green day",
+    "start": "It’s something unpredictable",
+    "lyrics": "But in the end it’s right, I hope you had the time of your life",
+    "music": "public/songs/Green day - Time of your life with lyrics.mp3",
+    "startAt": 35,
+    "stopAt": 37.4
+  },
+  {
+    "song": "My Heart Will Go On",
+    "artist" : "Celine Dion",
+    "start": "Near, far",
+    "lyrics": "Wherever you are, I believe that the heart does go on",
+    "music": "public/songs/Celine Dion - My Heart Will Go On (Lyrics).mp3",
+    "startAt": 145,
+    "stopAt": 150.5
+  },
+  {
+    "song": "The Fresh Prince Of Bel Air",
+    "artist" : "Will Smith",
+    "start": "Now this is a story",
+    "lyrics": "All about how my life got flipped turned upside down",
+    "music": "public/songs/The fresh prince of Bel Air theme song short version.mp3",
+    "startAt": 0,
+    "stopAt": 3.4
+  },
+  {
+    "song": "I'll Be There For You",
+    "artist" : "The Rembrandts",
+    "start": "So no one told you life",
+    "lyrics": "Was gonna be this way; your job’s a joke, you’re broke, your love life’s DOA",
+    "music": "public/songs/'I'll Be There For You' (Friends Theme Song).mp3",
+    "startAt": 0,
+    "stopAt": 7.1
+  },
+  {
+    "song": "Ninja Rap",
+    "artist" : "Vanilla Ice",
+    "start": "Ninja, Nina Rap(3x); Go, Go, Go, Go,",
+    "lyrics": "Go Ninja, Go Ninja, Go",
+    "music": "public/songs/Vanilla Ice - Ninja Rap Lyrics.mp3",
+    "startAt": 35,
+    "stopAt": 48
   }
 ]
