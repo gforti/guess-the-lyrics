@@ -1,23 +1,5 @@
 [
   {
-    "song": "Bidi Bidi Bom Bom",
-    "artist" : "Selena",
-    "start": "Me canta así, así, así, así",
-    "lyrics": "Bidi bidi bom bom, Bidi bidi bom bom",
-    "music": "public/songs/Selena - Bidi Bidi Bom Bom (Official Music Video).mp3",
-    "startAt": 62,
-    "stopAt": 65
-  },
-  {
-    "song": "Waterfalls",
-    "artist" : "TLC",
-    "start": "Don't go chasing' waterfalls",
-    "lyrics": "Please stick to the rivers and the lakes that you're used to",
-    "music": "public/songs/TLC - Waterfalls (Official HD Video).mp3",
-    "startAt": 118,
-    "stopAt": 122
-  },
-  {
     "song": "I Want It That Way",
     "artist" : "Backstreet Boys",
     "start": "Tell me why",
@@ -124,5 +106,86 @@
     "music": "public/songs/Stomp - Kirk Franklin.mp3",
     "startAt": 66,
     "stopAt": 71
+  },
+  {
+    "song": "Bidi Bidi Bom Bom",
+    "artist" : "Selena",
+    "start": "Me canta así, así, así, así",
+    "lyrics": "Bidi bidi bom bom, Bidi bidi bom bom",
+    "music": "public/songs/Selena - Bidi Bidi Bom Bom (Official Music Video).mp3",
+    "startAt": 62,
+    "stopAt": 65
+  },
+  {
+    "song": "Now That We Found Love",
+    "artist" : "Heavy D & The Boyz",
+    "start": "But I'm feeling Hunky Dory 'bout this thing that I found",
+    "lyrics": "Now that we found love what are we gonna do with it",
+    "music": "public/songs/Heavy D & The Boyz - Now That We Found Love.mp3",
+    "startAt": 52,
+    "stopAt": 56
+  },
+  {
+    "song": "End Of The Road",
+    "artist" : "Boyz II Men",
+    "start": "Pain in my head, Oh, I'd rather be dead, Spinning around and around",
+    "lyrics": "Although we've come, To the end of the road, Still I can't let go, It's unnatural You belong to me, I belong to you",
+    "music": "public/songs/Boyz II Men - End Of The Road.mp3",
+    "startAt": 50,
+    "stopAt": 59
+  },
+  {
+    "song": "Bye Bye Bye",
+    "artist" : "NSYNC",
+    "start": "I know that I can't take no more, It ain't no lie,  I want to see you out that door, Baby",
+    "lyrics": "bye bye bye, Don't want to be a fool for you, Just another player in your game for two",
+    "music": "public/songs/_NSYNC - Bye Bye Bye.mp3",
+    "startAt": 55,
+    "stopAt": 65
+  },
+  {
+    "song": "Waterfalls",
+    "artist" : "TLC",
+    "start": "Don't go chasing' waterfalls",
+    "lyrics": "Please stick to the rivers and the lakes that you're used to",
+    "music": "public/songs/TLC - Waterfalls (Official HD Video).mp3",
+    "startAt": 118,
+    "stopAt": 122
+  },
+  {
+    "song": "Gettin' Jiggy Wit It",
+    "artist" : "Will Smith",
+    "start": "Yo, my cardio is infinite, Ha ha, Big Willie style's all in it",
+    "lyrics": "Gettin' jiggy wit' it Na-na, na, na, na-na-na-na",
+    "music": "public/songs/Will Smith - Gettin' Jiggy Wit It.mp3",
+    "startAt": 50,
+    "stopAt": 54
+  },
+  {
+    "song": "Killing Me Softly With His Song",
+    "artist" : "Fugees",
+    "start": "And there he was, this young boy, stranger to my eyes",
+    "lyrics": "Strumming my pain with his fingers, Singing my life with his words, Killing me softly with his song",
+    "music": "public/songs/Killing Me Softly With His Song.mp3",
+    "startAt": 79,
+    "stopAt": 88
+  },
+  {
+    "song": "Don’t Speak",
+    "artist" : "No Doubt",
+    "start": "Don't speak",
+    "lyrics": "I know just what you're sayin, So please stop explainin, Don't tell me 'cause it hurts",
+    "music": "public/songs/Don't Speak - No Doubt (Lyrics).mp3",
+    "startAt": 35,
+    "stopAt": 46
+  },
+  {
+    "song": "Jump",
+    "artist" : "Kris Kross",
+    "start": "As we stand there totally krossed out, We commence to make you",
+    "lyrics": "Jump, jump, The Mac Dad will make ya Jump Jump, The Daddy Mac will make ya Jump Jump",
+    "music": "public/songs/Kris Kross - Jump (Official Video).mp3",
+    "startAt": 9,
+    "stopAt": 12.5
   }
 ]
