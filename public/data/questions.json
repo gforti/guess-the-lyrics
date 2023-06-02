@@ -1,5 +1,23 @@
 [
   {
+    "song": "Bidi Bidi Bom Bom",
+    "artist" : "Selena",
+    "start": "Me canta así, así, así, así",
+    "lyrics": "Bidi bidi bom bom, Bidi bidi bom bom",
+    "music": "public/songs/Selena - Bidi Bidi Bom Bom (Official Music Video).mp3",
+    "startAt": 62,
+    "stopAt": 65
+  },
+  {
+    "song": "Waterfalls",
+    "artist" : "TLC",
+    "start": "Don't go chasing' waterfalls",
+    "lyrics": "Please stick to the rivers and the lakes that you're used to",
+    "music": "public/songs/TLC - Waterfalls (Official HD Video).mp3",
+    "startAt": 118,
+    "stopAt": 122
+  },
+  {
     "song": "I Want It That Way",
     "artist" : "Backstreet Boys",
     "start": "Tell me why",
